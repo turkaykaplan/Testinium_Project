@@ -42,8 +42,8 @@ public class ProductPage extends Page{
         // İndirimli ilk ürünün stokta bulunan bedenler arasında rastgele seçim.
         List<WebElement> allProductSize = driver.findElements(By.xpath("(.//div[@data-page='2']//*[@class='product__discountPercent'])[1]//..//..//..//div[@class='product__header']//div[@class='product__sizeItem']//div[@class='product__size -productCart radio-box']//*[@class='radio-box__label']"));
         Random randomSizeSelect = new Random();
-        int randomProduct = randomSizeSelect.nextInt(allProductSize.size());
-        allProductSize.get(randomProduct).click();
+        int randomSizeProduct = randomSizeSelect.nextInt(allProductSize.size());
+        allProductSize.get(randomSizeProduct).click();
 
     }
 
