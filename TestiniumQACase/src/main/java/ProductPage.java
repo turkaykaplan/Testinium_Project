@@ -39,7 +39,7 @@ public class ProductPage extends Page{
 
 
     public void selectProduct() throws InterruptedException {
-        // İndirimli ilk ürünün stokta bulunan bedenler arasında rastgele seçim.
+        // Random selection of in-stock sizes of the first discounted item.
         List<WebElement> allProductSize = driver.findElements(By.xpath("(.//div[@data-page='2']//*[@class='product__discountPercent'])[1]//..//..//..//div[@class='product__header']//div[@class='product__sizeItem']//div[@class='product__size -productCart radio-box']//*[@class='radio-box__label']"));
         Random randomSizeSelect = new Random();
         int randomSizeProduct = randomSizeSelect.nextInt(allProductSize.size());
