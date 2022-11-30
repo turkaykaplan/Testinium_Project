@@ -39,8 +39,12 @@ public class ProductPage extends Page{
 
 
     public void selectProduct() throws InterruptedException {
-      WebElement size = driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div[2]/div[1]/div[3]/div[1]/div[48]/div/div[1]/div/div/div/div[6]"));
-      size.click();
+        // İndirimli ilk ürünün stokta bulunan bedenler arasında rastgele seçim.
+        List<WebElement> allProductSize = driver.findElements(By.xpath("(.//div[@data-page='2']//*[@class='product__discountPercent'])[1]//..//..//..//div[@class='product__header']//div[@class='product__sizeItem']//div[@class='product__size -productCart radio-box']//*[@class='radio-box__label']"));
+        Random randomSizeSelect = new Random();
+        int randomProduct = randomSizeSelect.nextInt(allProductSize.size());
+        allProductSize.get(randomProduct).click();
+
     }
 
 
