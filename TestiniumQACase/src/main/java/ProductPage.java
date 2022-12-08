@@ -11,19 +11,10 @@ import static org.junit.Assert.assertEquals;
 
 public class ProductPage extends Page{
 
-    By productPrice = By.xpath("//*[@id=\"cop-app\"]/div/div[1]/div[1]/div[1]/div[2]/section/div[3]/div/div/div[1]/div[3]/span[2]");
-    By afterCartPrice = By.xpath("//*[@id=\"cop-app\"]/div/div[1]/div[1]/div[1]/div[2]/section/div[3]/div/div/div[1]/div[3]/span[1]");
-
     public ProductPage(WebDriver driver) {
         super(driver);
     }
-    public String priceDiscount(){
-        return driver.findElement(productPrice).getText();
-    }
-    public String verifyPriceCart(){
-        return driver.findElement(afterCartPrice).getText();
-    }
-
+    
     public void scroll() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement moreButton = driver.findElement(By.xpath("//*[@id=\"pagedListContainer\"]/div[2]/div[2]/button"));
