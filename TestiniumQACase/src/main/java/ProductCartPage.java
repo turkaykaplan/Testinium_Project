@@ -8,13 +8,20 @@ public class ProductCartPage extends Page{
         super(driver);
     }
 
-    public void discountVerify(){
+    public void discountVerify() {
+        String beforeCart = driver.findElement(By.xpath("//div[@class='cartItem__prices']//*[@class='cartItem__price -old -labelPrice']")).getText();
+        int beforeCartInt = Integer.parseInt(beforeCart);
 
-        String beforeCart = driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div[1]/div[2]/div/div[2]/div[2]/div[1]/div[2]")).getText();
-        String afterCart = driver.findElement(By.xpath("/html/body/div[1]/div/div[1]/div[1]/div[2]/div/div[2]/div[3]/div/div[2]")).getText();
-        Assert.assertEquals(beforeCart, afterCart, "Discount Applied.");
+        String afterCart = driver.findElement(By.xpath("//div[@class='cartItem__prices']//*[@class='cartItem__price -sale']")).getText();
+        int afterCartInt = Integer.parseInt(afterCart);
+
+        if (beforeCartInt > afterCartInt) {
+            Assert.assertEquals(beforeCart, afterCart);
+            System.out.println("Discount is Successful");
+        } else System.out.println("Discount is Fail");
 
     }
+
 
 
 
