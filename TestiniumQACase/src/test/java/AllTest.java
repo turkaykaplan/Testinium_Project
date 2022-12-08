@@ -57,13 +57,24 @@ public class AllTest extends BaseTest {
         Actions action = new Actions(driver);
         action.moveToElement(product).perform();
         Thread.sleep(1000);
+        // Ürüne hover edildi.
+        List<WebElement> firstCheckProductList = driver.findElements(By.xpath(".//div[@data-page='2']//*[@class='product__discountPercent'][1]//..//..//./div[@class='product__priceContent']//div[@class='product__item']//*[@class='product__price -actual']"));
+        WebElement firstCheckProduct = firstCheckProductList.get(0);
+        String firstCheckProductText = firstCheckProduct.getText();
+        //Sepete eklenmeden önceki fiyat bilgisi alındı.
+        Thread.sleep(1000);
         productPage.selectProduct();
         Thread.sleep(1000);
         ProductPage.goToCart();
         Thread.sleep(1000);
-        String beforePrice = productPage.priceDiscount();
-        Assertions.assertEquals(beforePrice, productPage.verifyPriceCart());
+        WebElement cartProductCheck = driver.findElement(By.xpath("//div[@class='cartItem__prices']//*[@class='cartItem__price -sale']"));
+        String cartProductCheckText = cartProductCheck.getText();
+        // Ürünün sepetteki fiyat bilgisi alındı.
+        Assertions.assertEquals(firstCheckProductText, cartProductCheckText);
+        // Ürünün sepet öncesi ve sonrası fiyat kontrolü yapıldı.
+        
         Thread.sleep(1000);
+
     }
 
     @Test
